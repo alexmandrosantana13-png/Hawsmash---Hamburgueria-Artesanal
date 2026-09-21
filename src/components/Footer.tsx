@@ -11,16 +11,9 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="space-y-3 md:col-span-1">
             <div className="flex items-center">
-              <img 
-                src="/images/hawsmash-logo.png"
-                alt="Hawsmash Logo"
-                loading="lazy"
-                className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = "https://i.ibb.co/8DL2Npb2/hawsmash-logo-q80-1.webp";
-                }}
-              />
+              <span className="font-display text-2xl font-black tracking-tighter text-white uppercase select-none">
+                SMASH<span className="text-[#FF6B00]">POINT</span>
+              </span>
             </div>
             <p className="text-zinc-500 leading-relaxed">
               Hamburgueria artesanal especialista em smash burgers prensados na hora em Maputo. Ingredientes frescos e entrega rápida.
@@ -44,7 +37,7 @@ export const Footer: React.FC = () => {
               <span>Todos os dias: 11:00 – 23:00</span>
             </p>
             <p className="text-zinc-500">
-              Taxa de entrega fixa: <strong className="text-white">{RESTAURANT_INFO.deliveryFee} MT</strong>
+              Taxa de entrega: <strong className="text-white">A partir de 100 MT</strong> (por bairro)
             </p>
           </div>
 
@@ -65,7 +58,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-[#181818] flex flex-col sm:flex-row items-center justify-between text-zinc-600 text-[11px] gap-2">
-          <p>© 2026 HAWSMASH Maputo. Todos os direitos reservados.</p>
+          <p>© 2026 SMASH POINT Maputo (Restaurante Demo). Todos os direitos reservados.</p>
           <p className="uppercase tracking-widest font-semibold">Sabor Puro • Carne Prensada</p>
         </div>
       </div>

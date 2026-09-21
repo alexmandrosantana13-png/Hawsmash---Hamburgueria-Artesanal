@@ -184,7 +184,7 @@ export const DeliveryStep: React.FC<DeliveryStepProps> = ({
           <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-xs text-yellow-300">
             <Car className="w-4 h-4 text-yellow-400 shrink-0" />
             <span>
-              O pedido é despachado pela Hawsmash via <strong>Yango Flash</strong> para o seu destino. O valor da corrida é pago ao motorista.
+              O pedido é despachado pelo restaurante via <strong>Yango Flash</strong> para o seu destino. O valor da corrida é pago ao motorista.
             </span>
           </div>
         )}

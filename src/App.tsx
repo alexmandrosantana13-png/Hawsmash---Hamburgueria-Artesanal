@@ -6,6 +6,7 @@ import { HawsmashStandards } from './components/HawsmashStandards';
 import { CartDrawer } from './components/CartDrawer';
 import { CheckoutModal } from './components/CheckoutModal';
 import { Footer } from './components/Footer';
+import { AgencyBanner } from './components/AgencyBanner';
 import { MENU_ITEMS } from './data';
 import { CartItem, MenuItem, MeatType, DeliveryMode } from './types';
 
@@ -217,6 +218,9 @@ export default function App() {
       {/* Footer Info Grid */}
       <Footer />
 
+      {/* Agency Signature Sticky Footer Banner */}
+      <AgencyBanner />
+
       {/* Cart Drawer */}
       <CartDrawer 
         isOpen={isCartOpen}
@@ -249,7 +253,7 @@ export default function App() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 bg-[#FF6B00] text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 animate-bounce">
+        <div className="fixed bottom-16 sm:bottom-14 right-5 z-50 bg-[#FF6B00] text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 animate-bounce">
           <i className="fa-solid fa-circle-check text-base"></i>
           <span>{toastMessage}</span>
         </div>

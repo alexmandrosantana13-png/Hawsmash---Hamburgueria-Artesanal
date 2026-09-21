@@ -202,7 +202,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   // Final Action: Send to WhatsApp
   const handleConfirmOrder = () => {
     // Build structured WhatsApp message
-    let msg = `Olá, HAWSMASH! Gostaria de fazer um pedido.\n\n`;
+    let msg = `Olá, SMASH POINT! Gostaria de fazer um pedido.\n\n`;
 
     // 1. Items section
     msg += `*PEDIDO*\n`;
@@ -216,7 +216,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     // 2. Schedule and Fulfillment section
     msg += `*ENTREGA & HORÁRIO*\n`;
     if (deliveryMode === 'delivery') {
-      msg += `Modalidade: 🛵 Entrega ao Domicílio (Estafeta Hawsmash)\n`;
+      msg += `Modalidade: 🛵 Entrega ao Domicílio (Estafeta Próprio)\n`;
     } else if (deliveryMode === 'pickup') {
       msg += `Modalidade: 🏪 Levantamento no Balcão (${RESTAURANT_INFO.address})\n`;
     } else {

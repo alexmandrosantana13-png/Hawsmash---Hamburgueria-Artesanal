@@ -32,8 +32,9 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
               <i className="fa-regular fa-clock text-[#FF6B00]"></i>
               Entrega em {RESTAURANT_INFO.estimatedDeliveryTime}
             </span>
-            <span className="bg-[#FF6B00]/15 text-[#FF6B00] px-2 py-0.5 rounded font-medium text-[11px] border border-[#FF6B00]/20">
-              Taxa de entrega: {RESTAURANT_INFO.deliveryFee} MT
+            <span className="bg-[#FF6B00]/15 text-[#FF6B00] px-2 py-0.5 rounded font-medium text-[11px] border border-[#FF6B00]/20 inline-flex items-center gap-1">
+              <i className="fa-solid fa-motorcycle text-[10px]"></i>
+              <span>Taxa de entrega: A partir de 100 MT</span>
             </span>
           </div>
           <a
@@ -59,30 +60,23 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
           <a 
             href="#" 
             className="flex items-center group transition-transform hover:opacity-95" 
-            aria-label="Hawsmash Início"
+            aria-label="SMASH POINT Início"
           >
-            <img 
-              src="/images/hawsmash-logo.png"
-              alt="Hawsmash Logo"
-              loading="eager"
-              decoding="async"
-              className="h-14 sm:h-16 w-auto object-contain transition-transform group-hover:scale-[1.02] block"
-              style={{ height: '60px', width: 'auto', objectFit: 'contain' }}
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = "/images/hawsmash-logo.webp";
-              }}
-            />
+            <div className="flex items-center gap-2">
+              <span className="font-display text-2xl sm:text-3xl font-black tracking-tighter text-white uppercase select-none">
+                SMASH<span className="text-[#FF6B00]">POINT</span>
+              </span>
+            </div>
           </a>
 
-          {/* Indicator: Aberto agora em Maputo */}
+          {/* Indicator: Status de Funcionamento */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold shadow-xs shrink-0">
-            <span className="relative flex h-2.5 w-2.5">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="hidden sm:inline">Aberto agora em Maputo</span>
-            <span className="sm:hidden">Aberto agora</span>
+            <span className="hidden sm:inline leading-none">Aberto agora • 11:00 - 23:00</span>
+            <span className="sm:hidden leading-none">Aberto • 11:00 - 23:00</span>
           </div>
         </div>
 

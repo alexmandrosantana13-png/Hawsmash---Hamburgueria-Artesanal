@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-7 space-y-5 text-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/25 text-[#FF6B00] text-xs font-bold uppercase tracking-wider">
               <i className="fa-solid fa-fire text-xs"></i>
-              <span>O Autêntico Smash Burger em Maputo</span>
+              <span>O SEU RESTAURANTE AQUI</span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-6xl font-black text-white uppercase tracking-tight leading-none">
@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
             </h1>
 
             <p className="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-xl font-normal">
-              Pão brioche dourado na chapa, crostinha crocante inconfundível, queijo derretido e carnes nobres com opção <strong className="text-white font-semibold">HAW</strong> ou <strong className="text-[#FF6B00] font-semibold">WAGYU</strong>. Peça direto e receba quentinho.
+              Pão brioche dourado na chapa, crostinha crocante inconfundível, queijo derretido e carnes nobres com opção <strong className="text-white font-semibold">Simples</strong> ou <strong className="text-[#FF6B00] font-semibold">Dupla</strong>. Peça direto, pague via M-Pesa ou e-Mola e receba quentinho.
             </p>
           </div>
 
@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden border border-[#2A2A2A] shadow-2xl bg-[#1A1A1A] group">
               <img 
                 src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80" 
-                alt="Hawsmash Burger Especial" 
+                alt="Smash Point Burger Especial" 
                 className="w-full h-[320px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-80"></div>

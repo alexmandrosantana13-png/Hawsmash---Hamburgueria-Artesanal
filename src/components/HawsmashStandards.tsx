@@ -9,8 +9,8 @@ export const HawsmashStandards: React.FC = () => {
     },
     {
       icon: "fa-solid fa-award",
-      title: "Carnes Nobres (HAW & WAGYU)",
-      description: "Blend exclusivo preparado diariamente com cortes selecionados. Escolha entre a nossa carne HAW tradicional ou a experiência WAGYU."
+      title: "Carnes Nobres Selecionadas",
+      description: "Blend exclusivo preparado diariamente com cortes selecionados. Escolha entre a versão Simples ou Dupla em hambúrgueres artesanais."
     },
     {
       icon: "fa-solid fa-truck-ramp-box",
@@ -27,7 +27,7 @@ export const HawsmashStandards: React.FC = () => {
             Compromisso de Qualidade
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mt-3 uppercase tracking-wide">
-            O Padrão <span className="text-[#FF6B00]">Hawsmash</span>
+            O Padrão <span className="text-[#FF6B00]">Smash Point</span>
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base mt-2">
             Não fazemos apenas fast food. Entregamos uma experiência de artesanal de verdade em cada mordida.

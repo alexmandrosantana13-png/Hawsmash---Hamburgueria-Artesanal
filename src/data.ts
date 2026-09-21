@@ -2,9 +2,9 @@ import { MenuItem } from './types';
 import { STORE_CONFIG } from './config/constants';
 
 export const RESTAURANT_INFO = {
-  name: "HAWSMASH",
-  tagline: "Hamburgueria Artesanal • Maputo",
-  address: "141 Av. 24 de Julho, Maputo",
+  name: "SMASH POINT",
+  tagline: "Hamburgueria Artesanal • Maputo (Restaurante Demo)",
+  address: "Av. Marginal, Maputo (Restaurante Demo)",
   estimatedDeliveryTime: "30–45 minutos",
   deliveryFee: 150,
   pickupFee: 0,
@@ -44,7 +44,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: "classic-smash",
     name: "Classic Smash",
     category: "burgers",
-    description: "Pão Brioche • Carne Smash Suculenta • Queijo Cheddar • Cebola Caramelizada • Jalapeños • Pickles • Molho Hawsmash",
+    description: "Pão Brioche • Carne Smash Suculenta • Queijo Cheddar • Cebola Caramelizada • Jalapeños • Pickles • Molho Especial",
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
     supportsMeatChoice: true,
     prices: {
@@ -57,7 +57,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: "double-smash",
     name: "Double Smash",
     category: "burgers",
-    description: "Pão Brioche • 2 Carnes Smash Suculentas • Queijo Cheddar • Cebola Caramelizada • Jalapeños • Pickles • Molho Hawsmash",
+    description: "Pão Brioche • 2 Carnes Smash Suculentas • Queijo Cheddar • Cebola Caramelizada • Jalapeños • Pickles • Molho Especial",
     image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80",
     supportsMeatChoice: true,
     prices: {
@@ -70,7 +70,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: "smoked-brisket",
     name: "Smoked Brisket",
     category: "burgers",
-    description: "Pão Brioche • Carne Smash Suculenta • Smoked Brisket • Cebola Caramelizada • Jalapeños • Pickles • Molho Hawsmash",
+    description: "Pão Brioche • Carne Smash Suculenta • Smoked Brisket • Cebola Caramelizada • Jalapeños • Pickles • Molho Especial",
     image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
     supportsMeatChoice: true,
     prices: {
@@ -81,9 +81,9 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "hawsmash-signature",
-    name: "Hawsmash Signature",
+    name: "Smash Point Signature",
     category: "burgers",
-    description: "Pão Brioche Duplo Tostado • 2 Carnes Smash • Bacon Crocante • Duplo Cheddar • Cebola Crispy • Molho Secreto Haw",
+    description: "Pão Brioche Duplo Tostado • 2 Carnes Smash • Bacon Crocante • Duplo Cheddar • Cebola Crispy • Molho Secreto da Casa",
     image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?auto=format&fit=crop&w=800&q=80",
     supportsMeatChoice: true,
     prices: {
@@ -94,7 +94,7 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "truffle-smash",
-    name: "Truffle Smash",
+    name: "Truffle Smash Especial",
     category: "burgers",
     description: "Pão Brioche • Carne Smash • Queijo Fontina Derretido • Cogumelos Salteados em Ervas • Maio de Trufas Negras • Rúcula Fresca",
     image: "https://images.unsplash.com/photo-1583794138616-52850ad3d15d?auto=format&fit=crop&w=800&q=80",
@@ -116,7 +116,7 @@ export const MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "onion-rings-haw",
-    name: "Onion Rings Haw",
+    name: "Onion Rings Especial",
     category: "sides",
     description: "Anéis de cebola doce empanados em farinha panko crocante, servidos quentinhos com dip de alho defumado.",
     image: "https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=800&q=80",
