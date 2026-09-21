@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { ProductCard } from './components/ProductCard';
 import { HawsmashStandards } from './components/HawsmashStandards';
 import { CartDrawer } from './components/CartDrawer';
+import { CheckoutModal } from './components/CheckoutModal';
 import { Footer } from './components/Footer';
 import { MENU_ITEMS } from './data';
 import { CartItem, MenuItem, MeatType, DeliveryMode } from './types';
@@ -20,6 +21,7 @@ export default function App() {
   });
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
   const [deliveryOption, setDeliveryOption] = useState<DeliveryMode>("delivery");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -210,6 +212,22 @@ export default function App() {
         onClearCart={handleClearCart}
         deliveryOption={deliveryOption}
         setDeliveryOption={setDeliveryOption}
+        onProceedToCheckout={() => {
+          setIsCartOpen(false);
+          setIsCheckoutOpen(true);
+        }}
+      />
+
+      {/* Checkout Modal */}
+      <CheckoutModal 
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        onBack={() => {
+          setIsCheckoutOpen(false);
+          setIsCartOpen(true);
+        }}
+        cart={cart}
+        deliveryOption={deliveryOption}
       />
 
       {/* Toast Notification */}

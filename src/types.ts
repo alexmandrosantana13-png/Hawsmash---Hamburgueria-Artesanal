@@ -23,4 +23,7 @@ export interface CartItem {
   meatChoice: MeatType | null;
   unitPrice: number;
   quantity: number;
+  image?: string;
+  observation?: string;
+  notes?: string;
 }

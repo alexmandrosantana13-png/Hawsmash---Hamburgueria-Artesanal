@@ -6,10 +6,13 @@ export const RESTAURANT_INFO = {
   address: "141 Av. 24 de Julho, Maputo",
   estimatedDeliveryTime: "30–45 minutos",
   deliveryFee: 150,
+  pickupFee: 0,
   phone: "+258 86 076 0009",
   whatsappNumber: "258860760009",
   whatsappUrl: "https://wa.me/258860760009"
 };
+
+export const formatPrice = (val: number): string => `${val} MT`;
 
 export interface Neighborhood {
   id: string;
