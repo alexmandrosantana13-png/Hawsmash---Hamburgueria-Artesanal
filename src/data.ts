@@ -1,4 +1,5 @@
 import { MenuItem } from './types';
+import { STORE_CONFIG } from './config/constants';
 
 export const RESTAURANT_INFO = {
   name: "HAWSMASH",
@@ -7,9 +8,11 @@ export const RESTAURANT_INFO = {
   estimatedDeliveryTime: "30–45 minutos",
   deliveryFee: 150,
   pickupFee: 0,
-  phone: "+258 86 076 0009",
-  whatsappNumber: "258860760009",
-  whatsappUrl: "https://wa.me/258860760009"
+  phone: STORE_CONFIG.phoneDisplay,
+  whatsappNumber: STORE_CONFIG.phoneWhatsapp,
+  whatsappUrl: `https://wa.me/${STORE_CONFIG.phoneWhatsapp}`,
+  paymentNumber: STORE_CONFIG.paymentNumber,
+  paymentAccountName: STORE_CONFIG.paymentAccountName
 };
 
 export const formatPrice = (val: number): string => `${val} MT`;

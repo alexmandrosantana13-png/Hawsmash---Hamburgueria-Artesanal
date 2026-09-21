@@ -84,6 +84,20 @@ export default function App() {
     setCart([]);
   };
 
+  // Add drink upsell handler
+  const handleAddDrink = () => {
+    const cocaColaItem = MENU_ITEMS.find(m => m.id === 'coca-cola') || {
+      id: 'coca-cola',
+      name: 'Coca-Cola Original (330ml)',
+      category: 'drinks' as const,
+      description: 'Lata 330ml extremamente gelada para acompanhar o seu smash.',
+      image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80',
+      supportsMeatChoice: false,
+      price: 100
+    };
+    handleAddToCart(cocaColaItem, 'HAW', 100);
+  };
+
   // Categories list
   const categories = [
     { id: "all", name: "Todos os Itens", icon: "fa-border-all" },
@@ -210,6 +224,8 @@ export default function App() {
         cart={cart}
         onUpdateQuantity={handleUpdateQuantity}
         onClearCart={handleClearCart}
+        onAddToCart={handleAddToCart}
+        onAddDrink={handleAddDrink}
         deliveryOption={deliveryOption}
         setDeliveryOption={setDeliveryOption}
         onProceedToCheckout={() => {

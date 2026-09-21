@@ -9,10 +9,12 @@ import {
   ArrowRight, 
   Store, 
   Bike, 
+  Car,
   MapPin 
 } from 'lucide-react';
-import { CartItem, DeliveryMode } from '../types';
+import { CartItem, DeliveryMode, MenuItem, MeatType } from '../types';
 import { RESTAURANT_INFO, MENU_ITEMS, formatPrice } from '../data';
+import { DrinkUpsell } from './DrinkUpsell';
 
 export interface CartDrawerProps {
   isOpen: boolean;
@@ -24,6 +26,8 @@ export interface CartDrawerProps {
   onUpdateQuantity: (index: number, delta: number) => void;
   onRemoveItem?: (index: number) => void;
   onClearCart?: () => void;
+  onAddToCart?: (item: MenuItem, meatChoice: MeatType, price: number) => void;
+  onAddDrink?: () => void;
   // Support both orderType and deliveryOption
   deliveryOption?: DeliveryMode;
   orderType?: DeliveryMode;
@@ -40,6 +44,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   items: propItems,
   onUpdateQuantity,
   onRemoveItem,
+  onAddToCart,
+  onAddDrink: propOnAddDrink,
   deliveryOption,
   orderType,
   setDeliveryOption,
@@ -83,6 +89,34 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const handleProceed = () => {
     if (onProceedToCheckout) {
       onProceedToCheckout();
+    }
+  };
+
+  // Add drink handler for DrinkUpsell
+  const handleAddDrink = () => {
+    if (propOnAddDrink) {
+      propOnAddDrink();
+      return;
+    }
+
+    if (onAddToCart) {
+      const cocaColaItem = MENU_ITEMS.find((m) => m.id === 'coca-cola') || {
+        id: 'coca-cola',
+        name: 'Coca-Cola Original (330ml)',
+        category: 'drinks' as const,
+        description: 'Lata 330ml gelada',
+        image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80',
+        supportsMeatChoice: false,
+        price: 100,
+      };
+      onAddToCart(cocaColaItem, 'HAW', 100);
+      return;
+    }
+
+    // Direct fallback using onUpdateQuantity if item already exists
+    const existingDrinkIndex = items.findIndex((i) => i.id === 'coca-cola');
+    if (existingDrinkIndex > -1) {
+      onUpdateQuantity(existingDrinkIndex, 1);
     }
   };
 
@@ -150,24 +184,24 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               </button>
             </header>
 
-            {/* 2. Order Type Selector: Entrega / Levantamento (Always Visible) */}
+            {/* 2. Order Type Selector: Entrega / Levantamento / Yango (Always Visible) */}
             <div className="p-3.5 sm:p-4 bg-[#161616] border-b border-[#242424] shrink-0 space-y-2.5">
-              <div className="grid grid-cols-2 gap-2 p-1 bg-[#111111] rounded-xl border border-[#262626]">
+              <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#111111] rounded-xl border border-[#262626]">
                 <button
                   type="button"
                   onClick={() => handleOrderTypeChange('delivery')}
                   aria-pressed={currentOrderType === 'delivery'}
-                  className={`py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-between transition-all cursor-pointer ${
+                  className={`py-2 px-2 rounded-lg text-[11px] sm:text-xs font-bold flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 transition-all cursor-pointer ${
                     currentOrderType === 'delivery'
                       ? 'bg-[#FF6B00] text-white shadow-md'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
-                  <span className="flex items-center gap-1.5">
-                    <Bike className="w-3.5 h-3.5" />
+                  <span className="flex items-center gap-1">
+                    <Bike className="w-3.5 h-3.5 shrink-0" />
                     Entrega
                   </span>
-                  <span className={currentOrderType === 'delivery' ? 'text-white/95 font-extrabold' : 'text-zinc-500'}>
+                  <span className={currentOrderType === 'delivery' ? 'text-white/95 font-extrabold text-[10px]' : 'text-zinc-500 text-[10px]'}>
                     {formatPrice(RESTAURANT_INFO.deliveryFee)}
                   </span>
                 </button>
@@ -176,28 +210,55 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   type="button"
                   onClick={() => handleOrderTypeChange('pickup')}
                   aria-pressed={currentOrderType === 'pickup'}
-                  className={`py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-between transition-all cursor-pointer ${
+                  className={`py-2 px-2 rounded-lg text-[11px] sm:text-xs font-bold flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 transition-all cursor-pointer ${
                     currentOrderType === 'pickup'
                       ? 'bg-[#FF6B00] text-white shadow-md'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
-                  <span className="flex items-center gap-1.5">
-                    <Store className="w-3.5 h-3.5" />
-                    Levantamento
+                  <span className="flex items-center gap-1">
+                    <Store className="w-3.5 h-3.5 shrink-0" />
+                    Balcão
                   </span>
-                  <span className={currentOrderType === 'pickup' ? 'text-white/95 font-extrabold' : 'text-emerald-400 font-extrabold'}>
+                  <span className={currentOrderType === 'pickup' ? 'text-white/95 font-extrabold text-[10px]' : 'text-emerald-400 font-extrabold text-[10px]'}>
                     Grátis
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleOrderTypeChange('yango')}
+                  aria-pressed={currentOrderType === 'yango'}
+                  className={`py-2 px-2 rounded-lg text-[11px] sm:text-xs font-bold flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 transition-all cursor-pointer ${
+                    currentOrderType === 'yango'
+                      ? 'bg-[#FF6B00] text-white shadow-md'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  <span className="flex items-center gap-1">
+                    <Car className="w-3.5 h-3.5 shrink-0" />
+                    Yango
+                  </span>
+                  <span className={currentOrderType === 'yango' ? 'text-white/95 font-extrabold text-[10px]' : 'text-yellow-400 font-extrabold text-[10px]'}>
+                    App
                   </span>
                 </button>
               </div>
 
-              {/* Informative notification when Pickup is selected */}
+              {/* Informative notification when Pickup or Yango is selected */}
               {currentOrderType === 'pickup' && (
                 <div className="flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-[#1D1D1D] text-[11px] text-zinc-300 border border-[#2A2A2A]">
                   <MapPin className="w-3.5 h-3.5 text-[#FF6B00] shrink-0 mt-0.5" />
                   <span className="leading-snug">
                     Levantamento no balcão: <strong className="text-white font-semibold">{RESTAURANT_INFO.address}</strong>
+                  </span>
+                </div>
+              )}
+              {currentOrderType === 'yango' && (
+                <div className="flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-[#1D1D1D] text-[11px] text-yellow-300 border border-[#2A2A2A]">
+                  <Car className="w-3.5 h-3.5 text-yellow-400 shrink-0 mt-0.5" />
+                  <span className="leading-snug">
+                    Envio por <strong>Yango Flash</strong> — o valor da entrega é pago diretamente ao motorista.
                   </span>
                 </div>
               )}
@@ -330,6 +391,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             {/* 4. Financial Summary & Main Action Button (Always Visible when items exist) */}
             {items.length > 0 && (
               <footer className="p-4 sm:p-5 border-t border-[#222222] bg-[#161616] space-y-3 shrink-0">
+                {/* Drink Upsell Suggestion */}
+                <DrinkUpsell onAddDrink={handleAddDrink} />
+
                 <div className="space-y-2 text-xs">
                   {/* Subtotal */}
                   <div className="flex justify-between text-zinc-400">
@@ -337,16 +401,23 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     <span className="text-zinc-200 font-semibold">{formatPrice(subtotal)}</span>
                   </div>
 
-                  {/* Delivery Fee or Free Pickup */}
-                  {currentOrderType === 'delivery' ? (
+                  {/* Delivery Fee or Free Pickup or Yango */}
+                  {currentOrderType === 'delivery' && (
                     <div className="flex justify-between text-zinc-400">
                       <span>Taxa de entrega</span>
                       <span className="text-zinc-200 font-semibold">{formatPrice(deliveryFee)}</span>
                     </div>
-                  ) : (
+                  )}
+                  {currentOrderType === 'pickup' && (
                     <div className="flex justify-between text-zinc-400">
                       <span>Levantamento</span>
                       <span className="text-emerald-400 font-semibold">Grátis</span>
+                    </div>
+                  )}
+                  {currentOrderType === 'yango' && (
+                    <div className="flex justify-between text-zinc-400">
+                      <span>Envio via Yango</span>
+                      <span className="text-yellow-400 font-semibold">Pago ao motorista</span>
                     </div>
                   )}
 

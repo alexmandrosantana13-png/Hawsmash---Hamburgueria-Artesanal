@@ -1,5 +1,5 @@
 export type MeatType = 'HAW' | 'WAGYU';
-export type DeliveryMode = 'delivery' | 'pickup';
+export type DeliveryMode = 'delivery' | 'pickup' | 'yango';
 
 export interface MenuItem {
   id: string;

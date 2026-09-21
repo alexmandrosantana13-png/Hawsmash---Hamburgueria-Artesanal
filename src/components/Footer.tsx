@@ -1,5 +1,6 @@
 import React from 'react';
 import { RESTAURANT_INFO } from '../data';
+import { STORE_CONFIG } from '../config/constants';
 
 export const Footer: React.FC = () => {
   return (
@@ -51,13 +52,13 @@ export const Footer: React.FC = () => {
           <div className="space-y-3">
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">Pedidos Diretos</h4>
             <a 
-              href={RESTAURANT_INFO.whatsappUrl}
+              href={`https://wa.me/${STORE_CONFIG.phoneWhatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs transition-colors shadow-lg shadow-[#25D366]/20"
             >
               <i className="fa-brands fa-whatsapp text-sm"></i>
-              <span>WhatsApp: {RESTAURANT_INFO.phone}</span>
+              <span>WhatsApp: {STORE_CONFIG.phoneDisplay}</span>
             </a>
           </div>
 

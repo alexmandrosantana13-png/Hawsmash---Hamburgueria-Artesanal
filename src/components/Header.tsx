@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RESTAURANT_INFO } from '../data';
+import { STORE_CONFIG } from '../config/constants';
 
 interface HeaderProps {
   cartCount: number;
@@ -36,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
             </span>
           </div>
           <a
-            href={RESTAURANT_INFO.whatsappUrl}
+            href={`https://wa.me/${STORE_CONFIG.phoneWhatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors group"
@@ -45,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
               <i className="fa-brands fa-whatsapp text-sm"></i>
             </span>
             <span className="font-semibold text-zinc-200 group-hover:text-[#25D366] transition-colors">
-              WhatsApp: {RESTAURANT_INFO.phone}
+              WhatsApp: {STORE_CONFIG.phoneDisplay}
             </span>
           </a>
         </div>
