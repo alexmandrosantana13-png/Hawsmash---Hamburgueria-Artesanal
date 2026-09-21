@@ -27,6 +27,7 @@ export interface CheckoutModalProps {
   onClose: () => void;
   onBack?: () => void;
   onBackToCart?: () => void;
+  onClearCart?: () => void;
   // Accept both items and cart for maximum compatibility
   items?: CartItem[];
   cart?: CartItem[];
@@ -45,6 +46,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   cart: propCart,
   orderType: propOrderType,
   deliveryOption: propDeliveryOption,
+  onClearCart,
   onSuccess,
 }) => {
   const titleId = useId();
@@ -192,9 +194,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     const whatsappUrl = `https://wa.me/${cleanWhatsAppNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
 
+    if (onClearCart) {
+      onClearCart();
+    }
     if (onSuccess) {
       onSuccess();
     }
+    onClose();
   };
 
   return (

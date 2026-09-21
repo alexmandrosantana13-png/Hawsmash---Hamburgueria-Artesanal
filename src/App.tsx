@@ -228,6 +228,7 @@ export default function App() {
         }}
         cart={cart}
         deliveryOption={deliveryOption}
+        onClearCart={handleClearCart}
       />
 
       {/* Toast Notification */}

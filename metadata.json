@@ -1,6 +1,6 @@
 {
   "name": "HAWSMASH",
-  "description": "Hamburgueria Artesanal em Maputo especializada em smash burgers com opções HAW e WAGYU, entrega ao domicílio e pedidos via WhatsApp.",
+  "description": "Os melhores smash burgers artesanais de Maputo. Faça o seu pedido online e receba no conforto da sua casa!",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
