@@ -20,12 +20,11 @@ import {
 } from 'lucide-react';
 import { CartItem, DeliveryMode } from '../types';
 import { 
-  RESTAURANT_INFO, 
   MAPUTO_NEIGHBORHOODS, 
   formatPrice, 
   Neighborhood 
 } from '../data';
-import { STORE_CONFIG } from '../config/constants';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
 import { DeliveryStep } from './DeliveryStep';
 import { PaymentStep } from './PaymentStep';
 
@@ -110,7 +109,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   // - pickup: 0
   // - yango: 0 (paid directly to the Yango driver)
   const deliveryFee = deliveryMode === 'delivery' 
-    ? (selectedNeighborhood?.fee ?? RESTAURANT_INFO.deliveryFee) 
+    ? (selectedNeighborhood?.fee ?? RESTAURANT_CONFIG.deliveryFee) 
     : 0;
 
   // Financial calculations
@@ -122,8 +121,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
   // Clean WhatsApp number
   const cleanWhatsAppNumber = (
-    STORE_CONFIG.phoneWhatsapp ||
-    RESTAURANT_INFO.whatsappNumber ||
+    RESTAURANT_CONFIG.contact.whatsappNumber ||
     '258879590556'
   ).replace(/\D/g, '');
 
@@ -202,7 +200,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   // Final Action: Send to WhatsApp
   const handleConfirmOrder = () => {
     // Build structured WhatsApp message
-    let msg = `Olá, SMASH POINT! Gostaria de fazer um pedido.\n\n`;
+    let msg = `Olá, ${RESTAURANT_CONFIG.name}! Gostaria de fazer um pedido.\n\n`;
 
     // 1. Items section
     msg += `*PEDIDO*\n`;
@@ -218,7 +216,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     if (deliveryMode === 'delivery') {
       msg += `Modalidade: 🛵 Entrega ao Domicílio (Estafeta Próprio)\n`;
     } else if (deliveryMode === 'pickup') {
-      msg += `Modalidade: 🏪 Levantamento no Balcão (${RESTAURANT_INFO.address})\n`;
+      msg += `Modalidade: 🏪 Levantamento no Balcão (${RESTAURANT_CONFIG.address})\n`;
     } else {
       msg += `Modalidade: 🚗 Envio via Yango Flash (Pago ao motorista)\n`;
     }
@@ -236,7 +234,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         msg += `Ponto de referência: ${reference.trim()}\n`;
       }
     } else {
-      msg += `Local de Retirada: ${RESTAURANT_INFO.address}\n`;
+      msg += `Local de Retirada: ${RESTAURANT_CONFIG.address}\n`;
     }
 
     if (notes.trim()) {
@@ -258,10 +256,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
     // 5. Payment details section
     msg += `*PAGAMENTO (M-PESA / E-MOLA)*\n`;
-    msg += `Número: ${STORE_CONFIG.paymentNumber}\n`;
-    msg += `Titular: ${STORE_CONFIG.paymentAccountName}\n\n`;
+    msg += `Número: ${RESTAURANT_CONFIG.payment.number}\n`;
+    msg += `Titular: ${RESTAURANT_CONFIG.payment.accountName}\n\n`;
 
-    msg += `Tempo Estimado de Cozinha: ${RESTAURANT_INFO.estimatedDeliveryTime}`;
+    msg += `Tempo Estimado de Cozinha: ${RESTAURANT_CONFIG.estimatedDeliveryTime}`;
 
     // Open WhatsApp
     const encodedMessage = encodeURIComponent(msg);
@@ -715,7 +713,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                               Ponto de Levantamento no Balcão
                             </p>
                             <p className="text-sm font-semibold text-zinc-200">
-                              {RESTAURANT_INFO.address}
+                              {RESTAURANT_CONFIG.address}
                             </p>
                             <p className="text-xs text-zinc-400">
                               Horário agendado para retirada: <strong className="text-white">{getFormattedReadyTime()}</strong>
@@ -789,8 +787,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 /* ============================================================ */
                 <PaymentStep
                   total={total}
-                  paymentNumber={STORE_CONFIG.paymentNumber}
-                  accountName={STORE_CONFIG.paymentAccountName}
+                  paymentNumber={RESTAURANT_CONFIG.payment.number}
+                  accountName={RESTAURANT_CONFIG.payment.accountName}
                 />
               )}
             </div>

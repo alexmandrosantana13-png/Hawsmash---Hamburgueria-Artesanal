@@ -1,11 +1,11 @@
 import React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import { STORE_CONFIG } from '../config/constants';
+import { AGENCY_CONFIG } from '../config/restaurant';
 
 export const AgencyBanner: React.FC = () => {
   const customMessage =
     'Olá Trust Point, vi o vosso protótipo de cardápio digital e quero saber os preços para o meu restaurante.';
-  const whatsappAgencyUrl = `https://wa.me/${STORE_CONFIG.phoneWhatsapp}?text=${encodeURIComponent(
+  const whatsappAgencyUrl = `https://wa.me/${AGENCY_CONFIG.whatsappNumber}?text=${encodeURIComponent(
     customMessage
   )}`;
 

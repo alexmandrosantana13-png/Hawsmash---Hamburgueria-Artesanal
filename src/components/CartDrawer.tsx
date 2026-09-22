@@ -13,7 +13,8 @@ import {
   MapPin 
 } from 'lucide-react';
 import { CartItem, DeliveryMode, MenuItem, MeatType } from '../types';
-import { RESTAURANT_INFO, MENU_ITEMS, formatPrice } from '../data';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
+import { MENU_ITEMS, DEFAULT_DRINK_UPSELL, formatPrice } from '../data';
 import { DrinkUpsell } from './DrinkUpsell';
 
 export interface CartDrawerProps {
@@ -72,7 +73,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     (sum, item) => sum + item.unitPrice * item.quantity,
     0
   );
-  const deliveryFee = currentOrderType === 'delivery' ? RESTAURANT_INFO.deliveryFee : 0;
+  const deliveryFee = currentOrderType === 'delivery' ? RESTAURANT_CONFIG.deliveryFee : 0;
   const total = subtotal + deliveryFee;
 
   // Safe item removal handler
@@ -100,15 +101,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }
 
     if (onAddToCart) {
-      const cocaColaItem = MENU_ITEMS.find((m) => m.id === 'coca-cola') || {
-        id: 'coca-cola',
-        name: 'Coca-Cola Original (330ml)',
-        category: 'drinks' as const,
-        description: 'Lata 330ml gelada',
-        image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80',
-        supportsMeatChoice: false,
-        price: 100,
-      };
+      const cocaColaItem = MENU_ITEMS.find((m) => m.id === 'coca-cola') || DEFAULT_DRINK_UPSELL;
       onAddToCart(cocaColaItem, 'HAW', 100);
       return;
     }
@@ -202,7 +195,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     Entrega
                   </span>
                   <span className={currentOrderType === 'delivery' ? 'text-white/95 font-extrabold text-[10px]' : 'text-zinc-500 text-[10px]'}>
-                    {formatPrice(RESTAURANT_INFO.deliveryFee)}
+                    {formatPrice(RESTAURANT_CONFIG.deliveryFee)}
                   </span>
                 </button>
 
@@ -250,7 +243,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <div className="flex items-start gap-2 px-2.5 py-1.5 rounded-lg bg-[#1D1D1D] text-[11px] text-zinc-300 border border-[#2A2A2A]">
                   <MapPin className="w-3.5 h-3.5 text-[#FF6B00] shrink-0 mt-0.5" />
                   <span className="leading-snug">
-                    Levantamento no balcão: <strong className="text-white font-semibold">{RESTAURANT_INFO.address}</strong>
+                    Levantamento no balcão: <strong className="text-white font-semibold">{RESTAURANT_CONFIG.address}</strong>
                   </span>
                 </div>
               )}

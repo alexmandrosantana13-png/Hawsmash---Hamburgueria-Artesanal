@@ -11,7 +11,8 @@ import {
   Calendar
 } from 'lucide-react';
 import { DeliveryMode } from '../types';
-import { RESTAURANT_INFO, formatPrice } from '../data';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
+import { formatPrice } from '../data';
 
 export interface DeliveryStepProps {
   // Selected fulfillment method
@@ -43,7 +44,7 @@ export const DELIVERY_OPTIONS: {
     badge: 'Grátis',
     badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
     description: 'Levanta o teu pedido quentinho diretamente na nossa loja.',
-    tag: RESTAURANT_INFO.address,
+    tag: RESTAURANT_CONFIG.address,
     icon: Store
   },
   {
@@ -52,7 +53,7 @@ export const DELIVERY_OPTIONS: {
     badge: 'Taxa fixa/bairro',
     badgeColor: 'text-[#FF6B00] bg-[#FF6B00]/10 border-[#FF6B00]/30',
     description: 'Estafeta próprio com entrega rápida no conforto da tua casa.',
-    tag: 'Maputo & Arredores',
+    tag: `${RESTAURANT_CONFIG.city} & Arredores`,
     icon: Bike
   },
   {
@@ -175,7 +176,7 @@ export const DeliveryStep: React.FC<DeliveryStepProps> = ({
           <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300">
             <Store className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>
-              Balcão: <strong className="text-white font-semibold">{RESTAURANT_INFO.address}</strong>. Pedido pronto no horário selecionado.
+              Balcão: <strong className="text-white font-semibold">{RESTAURANT_CONFIG.address}</strong>. Pedido pronto no horário selecionado.
             </span>
           </div>
         )}

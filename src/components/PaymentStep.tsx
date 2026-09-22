@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
-import { STORE_CONFIG } from '../config/constants';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
 import { formatPrice } from '../data';
 
 export interface PaymentStepProps {
@@ -22,8 +22,8 @@ export interface PaymentStepProps {
 
 export const PaymentStep: React.FC<PaymentStepProps> = ({
   total,
-  paymentNumber = STORE_CONFIG.paymentNumber,
-  accountName = STORE_CONFIG.paymentAccountName,
+  paymentNumber = RESTAURANT_CONFIG.payment.number,
+  accountName = RESTAURANT_CONFIG.payment.accountName,
   onProceedToWhatsApp,
   isSubmitting = false,
 }) => {

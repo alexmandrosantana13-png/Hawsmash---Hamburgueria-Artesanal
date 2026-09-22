@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RESTAURANT_INFO } from '../data';
-import { STORE_CONFIG } from '../config/constants';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
 
 interface HeaderProps {
   cartCount: number;
@@ -26,19 +25,19 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
           <div className="flex items-center space-x-5">
             <span className="flex items-center gap-1.5 text-zinc-300">
               <i className="fa-solid fa-location-dot text-[#FF6B00]"></i>
-              {RESTAURANT_INFO.address}
+              {RESTAURANT_CONFIG.address}
             </span>
             <span className="flex items-center gap-1.5 text-zinc-300">
               <i className="fa-regular fa-clock text-[#FF6B00]"></i>
-              Entrega em {RESTAURANT_INFO.estimatedDeliveryTime}
+              Entrega em {RESTAURANT_CONFIG.estimatedDeliveryTime}
             </span>
             <span className="bg-[#FF6B00]/15 text-[#FF6B00] px-2 py-0.5 rounded font-medium text-[11px] border border-[#FF6B00]/20 inline-flex items-center gap-1">
               <i className="fa-solid fa-motorcycle text-[10px]"></i>
-              <span>Taxa de entrega: A partir de 100 MT</span>
+              <span>Taxa de entrega: {RESTAURANT_CONFIG.deliveryFeeMinDisplay}</span>
             </span>
           </div>
           <a
-            href={`https://wa.me/${STORE_CONFIG.phoneWhatsapp}`}
+            href={`https://wa.me/${RESTAURANT_CONFIG.contact.whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors group"
@@ -47,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
               <i className="fa-brands fa-whatsapp text-sm"></i>
             </span>
             <span className="font-semibold text-zinc-200 group-hover:text-[#25D366] transition-colors">
-              WhatsApp: {STORE_CONFIG.phoneDisplay}
+              WhatsApp: {RESTAURANT_CONFIG.contact.phoneDisplay}
             </span>
           </a>
         </div>
@@ -60,11 +59,12 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
           <a 
             href="#" 
             className="flex items-center group transition-transform hover:opacity-95" 
-            aria-label="SMASH POINT Início"
+            aria-label={`${RESTAURANT_CONFIG.name} Início`}
           >
             <div className="flex items-center gap-2">
               <span className="font-display text-2xl sm:text-3xl font-black tracking-tighter text-white uppercase select-none">
-                SMASH<span className="text-[#FF6B00]">POINT</span>
+                {RESTAURANT_CONFIG.logo.textPrimary}
+                <span className="text-[#FF6B00]">{RESTAURANT_CONFIG.logo.textSecondary}</span>
               </span>
             </div>
           </a>
@@ -75,8 +75,8 @@ export const Header: React.FC<HeaderProps> = ({ cartCount, cartTotal, onOpenCart
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="hidden sm:inline leading-none">Aberto agora • 11:00 - 23:00</span>
-            <span className="sm:hidden leading-none">Aberto • 11:00 - 23:00</span>
+            <span className="hidden sm:inline leading-none">{RESTAURANT_CONFIG.openingHours.isOpenNowText}</span>
+            <span className="sm:hidden leading-none">{RESTAURANT_CONFIG.openingHours.isOpenNowShortText}</span>
           </div>
         </div>
 

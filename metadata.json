@@ -1,6 +1,6 @@
 {
-  "name": "SMASH POINT",
-  "description": "Os melhores smash burgers artesanais de Maputo. Protótipo de cardápio digital para restaurantes.",
+  "name": "Smash Point | Cardápio Digital Demo",
+  "description": "Cardápio digital interativo para restaurantes e hamburguerias desenvolvido por Trust Point Digital.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

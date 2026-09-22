@@ -1,4 +1,5 @@
 import React from 'react';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
 
 export const Hero: React.FC = () => {
   return (
@@ -30,7 +31,7 @@ export const Hero: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden border border-[#2A2A2A] shadow-2xl bg-[#1A1A1A] group">
               <img 
                 src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80" 
-                alt="Smash Point Burger Especial" 
+                alt={`${RESTAURANT_CONFIG.shortName || RESTAURANT_CONFIG.name} Burger Especial`} 
                 className="w-full h-[320px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-80"></div>

@@ -7,18 +7,18 @@ import { CartDrawer } from './components/CartDrawer';
 import { CheckoutModal } from './components/CheckoutModal';
 import { Footer } from './components/Footer';
 import { AgencyBanner } from './components/AgencyBanner';
-import { MENU_ITEMS } from './data';
+import { MENU_ITEMS, MENU_CATEGORIES, DEFAULT_DRINK_UPSELL } from './data/menu';
 import { CartItem, MenuItem, MeatType, DeliveryMode } from './types';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [meatSelections, setMeatSelections] = useState<Record<string, MeatType>>({
-    "classic-smash": "HAW",
-    "double-smash": "HAW",
-    "smoked-brisket": "HAW",
-    "hawsmash-signature": "HAW",
-    "truffle-smash": "HAW"
+  const [meatSelections, setMeatSelections] = useState<Record<string, MeatType>>(() => {
+    const initial: Record<string, MeatType> = {};
+    MENU_ITEMS.filter(item => item.supportsMeatChoice).forEach(item => {
+      initial[item.id] = "HAW";
+    });
+    return initial;
   });
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
@@ -87,26 +87,12 @@ export default function App() {
 
   // Add drink upsell handler
   const handleAddDrink = () => {
-    const cocaColaItem = MENU_ITEMS.find(m => m.id === 'coca-cola') || {
-      id: 'coca-cola',
-      name: 'Coca-Cola Original (330ml)',
-      category: 'drinks' as const,
-      description: 'Lata 330ml extremamente gelada para acompanhar o seu smash.',
-      image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80',
-      supportsMeatChoice: false,
-      price: 100
-    };
+    const cocaColaItem = MENU_ITEMS.find(m => m.id === 'coca-cola') || DEFAULT_DRINK_UPSELL;
     handleAddToCart(cocaColaItem, 'HAW', 100);
   };
 
-  // Categories list
-  const categories = [
-    { id: "all", name: "Todos os Itens", icon: "fa-border-all" },
-    { id: "burgers", name: "Hambúrgueres Artesanais", icon: "fa-burger" },
-    { id: "sides", name: "Acompanhamentos & Extras", icon: "fa-utensils" },
-    { id: "desserts", name: "Sobremesas", icon: "fa-ice-cream" },
-    { id: "drinks", name: "Bebidas", icon: "fa-bottle-water" }
-  ];
+  // Categories list configured from menu
+  const categories = MENU_CATEGORIES;
 
   // Filtered items
   const filteredItems = useMemo(() => {

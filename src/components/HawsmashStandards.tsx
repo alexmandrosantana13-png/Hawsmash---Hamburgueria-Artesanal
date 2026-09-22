@@ -1,4 +1,5 @@
 import React from 'react';
+import { RESTAURANT_CONFIG } from '../config/restaurant';
 
 export const HawsmashStandards: React.FC = () => {
   const standards = [
@@ -14,7 +15,7 @@ export const HawsmashStandards: React.FC = () => {
     },
     {
       icon: "fa-solid fa-truck-ramp-box",
-      title: "Entrega Rápida em Maputo",
+      title: `Entrega Rápida em ${RESTAURANT_CONFIG.city}`,
       description: "Embalagens térmicas projetadas para manter o pão brioche macio e a carne quentinha no percurso até à sua porta."
     }
   ];
@@ -27,7 +28,7 @@ export const HawsmashStandards: React.FC = () => {
             Compromisso de Qualidade
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mt-3 uppercase tracking-wide">
-            O Padrão <span className="text-[#FF6B00]">Smash Point</span>
+            O Padrão <span className="text-[#FF6B00]">{RESTAURANT_CONFIG.shortName || RESTAURANT_CONFIG.name}</span>
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base mt-2">
             Não fazemos apenas fast food. Entregamos uma experiência de artesanal de verdade em cada mordida.
