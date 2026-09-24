@@ -1,4 +1,5 @@
 import { RestaurantConfig, AgencyConfig } from '../types';
+import { DELIVERY_ZONES } from './delivery';
 
 /**
  * CONFIGURAÇÃO CENTRAL DO RESTAURANTE
@@ -44,6 +45,7 @@ export const RESTAURANT_CONFIG: RestaurantConfig = {
   deliveryFee: 150,
   deliveryFeeMinDisplay: 'A partir de 100 MT',
   pickupFee: 0,
+  deliveryZones: DELIVERY_ZONES,
   payment: {
     number: '879590556',
     accountName: 'Trust Point Digital',

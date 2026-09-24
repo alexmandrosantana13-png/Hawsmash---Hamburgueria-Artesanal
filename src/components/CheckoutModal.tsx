@@ -18,13 +18,10 @@ import {
   Calendar,
   CreditCard
 } from 'lucide-react';
-import { CartItem, DeliveryMode } from '../types';
-import { 
-  MAPUTO_NEIGHBORHOODS, 
-  formatPrice, 
-  Neighborhood 
-} from '../data';
+import { CartItem, DeliveryMode, DeliveryZone } from '../types';
+import { formatPrice } from '../data';
 import { RESTAURANT_CONFIG } from '../config/restaurant';
+import { DELIVERY_ZONES, DEFAULT_DELIVERY_ZONE_ID } from '../config/delivery';
 import { DeliveryStep } from './DeliveryStep';
 import { PaymentStep } from './PaymentStep';
 
@@ -87,10 +84,17 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     }
   }, [isOpen, propOrderType, propDeliveryOption]);
 
+  const deliveryZones: DeliveryZone[] = 
+    RESTAURANT_CONFIG.deliveryZones && RESTAURANT_CONFIG.deliveryZones.length > 0
+      ? RESTAURANT_CONFIG.deliveryZones
+      : DELIVERY_ZONES;
+
+  const defaultZoneId = deliveryZones[0]?.id || DEFAULT_DELIVERY_ZONE_ID;
+
   // Customer form state
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [selectedNeighborhoodId, setSelectedNeighborhoodId] = useState<string>('polana-cimento');
+  const [selectedNeighborhoodId, setSelectedNeighborhoodId] = useState<string>(defaultZoneId);
   const [address, setAddress] = useState('');
   const [reference, setReference] = useState('');
   const [notes, setNotes] = useState('');
@@ -100,9 +104,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
 
   // Resolve neighborhood and delivery fee
-  const selectedNeighborhood: Neighborhood =
-    MAPUTO_NEIGHBORHOODS.find((n) => n.id === selectedNeighborhoodId) ||
-    MAPUTO_NEIGHBORHOODS[0];
+  const selectedNeighborhood: DeliveryZone =
+    deliveryZones.find((n) => n.id === selectedNeighborhoodId) ||
+    deliveryZones[0];
 
   // Fee calculation:
   // - delivery: neighborhood fee
@@ -610,7 +614,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                               htmlFor="delivery-neighborhood" 
                               className="block text-xs font-semibold text-zinc-200"
                             >
-                              Bairro em Maputo *
+                              Bairro em {RESTAURANT_CONFIG.city} *
                             </label>
                             {deliveryMode === 'delivery' ? (
                               <span className="text-[#FF6B00] font-bold text-[11px] bg-[#FF6B00]/15 px-2 py-0.5 rounded border border-[#FF6B00]/25">
@@ -634,7 +638,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                               }}
                               className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6B00] appearance-none cursor-pointer pr-10"
                             >
-                              {MAPUTO_NEIGHBORHOODS.map((n) => (
+                              {deliveryZones.map((n) => (
                                 <option key={n.id} value={n.id} className="bg-[#181818] text-white">
                                   {n.name} {deliveryMode === 'delivery' ? `— ${formatPrice(n.fee)}` : ''}
                                 </option>

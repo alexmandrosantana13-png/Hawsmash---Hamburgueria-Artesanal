@@ -3,6 +3,14 @@ export type DeliveryMode = 'delivery' | 'pickup' | 'yango';
 
 export type MenuCategoryId = 'burgers' | 'sides' | 'desserts' | 'drinks';
 
+export interface DeliveryZone {
+  id: string;
+  name: string;
+  fee: number;
+}
+
+export type Neighborhood = DeliveryZone;
+
 export interface MenuCategory {
   id: string;
   name: string;
@@ -87,6 +95,7 @@ export interface RestaurantConfig {
   deliveryFee: number;
   deliveryFeeMinDisplay: string;
   pickupFee: number;
+  deliveryZones?: DeliveryZone[];
   payment: RestaurantPaymentConfig;
 }
 
