@@ -16,7 +16,8 @@ import {
   Sparkles,
   CheckCircle2,
   Calendar,
-  CreditCard
+  CreditCard,
+  ChevronDown
 } from 'lucide-react';
 import { CartItem, DeliveryMode, DeliveryZone } from '../types';
 import { formatPrice } from '../data';
@@ -311,14 +312,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             className="relative z-10 w-full max-w-xl bg-[#141414] border border-[#262626] rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[92vh] sm:max-h-[90vh] overflow-hidden text-white"
           >
             {/* 1. Header with navigation controls and step progress */}
-            <header className="p-4 sm:p-5 border-b border-[#222222] bg-[#181818] flex items-center justify-between shrink-0">
-              <div className="flex items-center gap-2 sm:gap-3">
+            <header className="p-3.5 sm:p-5 border-b border-[#222222] bg-[#181818] flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                 {currentStep === 3 ? (
                   <button
                     type="button"
                     onClick={() => setCurrentStep(2)}
                     aria-label="Voltar para os dados do cliente"
-                    className="p-2 -ml-1 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                    className="p-1.5 sm:p-2 -ml-1 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer shrink-0"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span className="hidden sm:inline">Etapa 2</span>
@@ -328,7 +329,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     type="button"
                     onClick={() => setCurrentStep(1)}
                     aria-label="Voltar para a escolha de entrega e horário"
-                    className="p-2 -ml-1 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                    className="p-1.5 sm:p-2 -ml-1 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer shrink-0"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span className="hidden sm:inline">Etapa 1</span>
@@ -338,18 +339,18 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     type="button"
                     onClick={handleBack}
                     aria-label="Voltar ao carrinho"
-                    className="p-2 -ml-1 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                    className="p-1.5 sm:p-2 -ml-1 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer shrink-0"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span className="hidden sm:inline">Carrinho</span>
                   </button>
                 ) : null}
 
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <h2 
                       id={titleId}
-                      className="font-display text-lg sm:text-xl font-bold uppercase tracking-wider text-white leading-none"
+                      className="font-display text-base sm:text-xl font-bold uppercase tracking-wider text-white leading-none truncate"
                     >
                       {currentStep === 1 && 'Entrega & Horário'}
                       {currentStep === 2 && 'Dados de Contacto'}
@@ -357,13 +358,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </h2>
                     
                     {/* Step indicator */}
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#FF6B00]/15 text-[#FF6B00] border border-[#FF6B00]/30">
+                    <span className="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#FF6B00]/15 text-[#FF6B00] border border-[#FF6B00]/30 shrink-0">
                       Passo {currentStep} de 3
                     </span>
                   </div>
                   <p 
                     id={descriptionId}
-                    className="text-xs text-zinc-400 mt-1"
+                    className="text-[11px] sm:text-xs text-zinc-400 mt-0.5 sm:mt-1 truncate sm:whitespace-normal"
                   >
                     {currentStep === 1 && 'Escolhe como queres receber e o horário pretendido.'}
                     {currentStep === 2 && 'Informa os teus dados para podermos preparar o pedido.'}
@@ -377,24 +378,24 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 type="button"
                 onClick={onClose}
                 aria-label="Fechar finalização de pedido"
-                className="w-9 h-9 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#222222] hover:bg-[#2C2C2C] border border-[#2D2D2D] text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 ml-2"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </header>
 
             {/* Stepper Progress Bar (3 Passos) */}
-            <div className="grid grid-cols-3 bg-[#1A1A1A] border-b border-[#242424] text-[11px] font-bold">
+            <div className="grid grid-cols-3 bg-[#1A1A1A] border-b border-[#242424] text-[10px] sm:text-[11px] font-bold">
               <button
                 type="button"
                 onClick={() => setCurrentStep(1)}
-                className={`py-2 px-2 text-center border-r border-[#242424] transition-colors flex items-center justify-center gap-1 cursor-pointer ${
+                className={`py-1.5 sm:py-2 px-1.5 sm:px-2 text-center border-r border-[#242424] transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                   currentStep === 1 
                     ? 'bg-[#FF6B00]/10 text-[#FF6B00] border-b-2 border-b-[#FF6B00]' 
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                <span className="w-4 h-4 rounded-full bg-zinc-800 text-zinc-300 text-[10px] flex items-center justify-center font-black">
+                <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-800 text-zinc-300 text-[9px] sm:text-[10px] flex items-center justify-center font-black shrink-0">
                   1
                 </span>
                 <span className="truncate">1. Horário</span>
@@ -403,13 +404,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={handleProceedToStep2}
-                className={`py-2 px-2 text-center border-r border-[#242424] transition-colors flex items-center justify-center gap-1 cursor-pointer ${
+                className={`py-1.5 sm:py-2 px-1.5 sm:px-2 text-center border-r border-[#242424] transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                   currentStep === 2 
                     ? 'bg-[#FF6B00]/10 text-[#FF6B00] border-b-2 border-b-[#FF6B00]' 
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                <span className="w-4 h-4 rounded-full bg-zinc-800 text-zinc-300 text-[10px] flex items-center justify-center font-black">
+                <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-800 text-zinc-300 text-[9px] sm:text-[10px] flex items-center justify-center font-black shrink-0">
                   2
                 </span>
                 <span className="truncate">2. Dados</span>
@@ -418,13 +419,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={handleProceedToStep3}
-                className={`py-2 px-2 text-center transition-colors flex items-center justify-center gap-1 cursor-pointer ${
+                className={`py-1.5 sm:py-2 px-1.5 sm:px-2 text-center transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                   currentStep === 3 
                     ? 'bg-[#FF6B00]/10 text-[#FF6B00] border-b-2 border-b-[#FF6B00]' 
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                <span className="w-4 h-4 rounded-full bg-zinc-800 text-zinc-300 text-[10px] flex items-center justify-center font-black">
+                <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-zinc-800 text-zinc-300 text-[9px] sm:text-[10px] flex items-center justify-center font-black shrink-0">
                   3
                 </span>
                 <span className="truncate">3. Pagamento</span>
@@ -432,7 +433,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             </div>
 
             {/* 2. Scrollable Body */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3.5 sm:p-6 space-y-4 sm:space-y-6">
               {currentStep === 1 && (
                 /* ============================================================ */
                 /* STEP 1: DeliveryStep Component                               */
@@ -464,22 +465,22 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 /* ============================================================ */
                 <>
                   {/* Delivery & Schedule summary pill */}
-                  <div className="p-3 rounded-xl bg-[#1A1A1A] border border-[#2B2B2B] flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/15 text-[#FF6B00] border border-[#FF6B00]/30 flex items-center justify-center shrink-0">
-                        {deliveryMode === 'delivery' && <Bike className="w-4 h-4" />}
-                        {deliveryMode === 'pickup' && <Store className="w-4 h-4" />}
-                        {deliveryMode === 'yango' && <Car className="w-4 h-4" />}
+                  <div className="p-2.5 sm:p-3 rounded-xl bg-[#1A1A1A] border border-[#2B2B2B] flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#FF6B00]/15 text-[#FF6B00] border border-[#FF6B00]/30 flex items-center justify-center shrink-0">
+                        {deliveryMode === 'delivery' && <Bike className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+                        {deliveryMode === 'pickup' && <Store className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+                        {deliveryMode === 'yango' && <Car className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                       </div>
-                      <div>
-                        <p className="font-bold text-white capitalize">
+                      <div className="min-w-0">
+                        <p className="font-bold text-white capitalize truncate text-xs sm:text-sm">
                           {deliveryMode === 'delivery' && 'Entrega ao Domicílio'}
                           {deliveryMode === 'pickup' && 'Levantamento no Balcão'}
                           {deliveryMode === 'yango' && 'Envio via Yango Flash'}
                         </p>
                         <p className="text-[11px] text-zinc-400 flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-[#FF6B00]" />
-                          <span>{getFormattedReadyTime()}</span>
+                          <Clock className="w-3 h-3 text-[#FF6B00] shrink-0" />
+                          <span className="truncate">{getFormattedReadyTime()}</span>
                         </p>
                       </div>
                     </div>
@@ -487,25 +488,25 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className="text-xs text-[#FF6B00] hover:text-[#E55F00] font-semibold underline underline-offset-2 cursor-pointer"
+                      className="text-xs text-[#FF6B00] hover:text-[#E55F00] font-semibold underline underline-offset-2 shrink-0 ml-2 cursor-pointer"
                     >
                       Alterar
                     </button>
                   </div>
 
                   {/* SECTION A: Customer Identification */}
-                  <section className="space-y-3.5">
-                    <div className="flex items-center justify-between border-b border-[#242424] pb-2">
-                      <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-2">
-                        <User className="w-4 h-4 text-[#FF6B00]" />
+                  <section className="space-y-2.5 sm:space-y-3.5">
+                    <div className="flex items-center justify-between border-b border-[#242424] pb-1.5 sm:pb-2">
+                      <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5 sm:gap-2">
+                        <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF6B00]" />
                         <span>Identificação do Cliente</span>
                       </h3>
-                      <span className="text-[11px] text-zinc-500">* Campos obrigatórios</span>
+                      <span className="text-[10px] sm:text-[11px] text-zinc-500">* Obrigatório</span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
                       {/* Name field */}
-                      <div className="space-y-1.5">
+                      <div className="space-y-1">
                         <label 
                           htmlFor="customer-name" 
                           className="block text-xs font-semibold text-zinc-200"
@@ -515,6 +516,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                         <div className="relative">
                           <input
                             id="customer-name"
+                            name="name"
+                            autoComplete="name"
                             type="text"
                             value={name}
                             onChange={(e) => {
@@ -526,7 +529,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                             onBlur={() => handleBlur('name')}
                             placeholder="Ex: Carlos Mandlate"
                             aria-invalid={Boolean(touched.name && errors.name)}
-                            className={`w-full bg-[#1A1A1A] border rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
+                            className={`w-full bg-[#1A1A1A] border rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
                               touched.name && errors.name
                                 ? 'border-red-500 focus:border-red-500 ring-1 ring-red-500/30'
                                 : 'border-[#2D2D2D] focus:border-[#FF6B00]'
@@ -542,7 +545,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                       </div>
 
                       {/* Phone field */}
-                      <div className="space-y-1.5">
+                      <div className="space-y-1">
                         <label 
                           htmlFor="customer-phone" 
                           className="block text-xs font-semibold text-zinc-200"
@@ -552,6 +555,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                         <div className="relative">
                           <input
                             id="customer-phone"
+                            name="tel"
+                            autoComplete="tel"
                             type="tel"
                             value={phone}
                             onChange={(e) => {
@@ -563,7 +568,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                             onBlur={() => handleBlur('phone')}
                             placeholder="Ex: +258 84 123 4567"
                             aria-invalid={Boolean(touched.phone && errors.phone)}
-                            className={`w-full bg-[#1A1A1A] border rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
+                            className={`w-full bg-[#1A1A1A] border rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
                               touched.phone && errors.phone
                                 ? 'border-red-500 focus:border-red-500 ring-1 ring-red-500/30'
                                 : 'border-[#2D2D2D] focus:border-[#FF6B00]'
@@ -581,24 +586,24 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   </section>
 
                   {/* SECTION B: Delivery or Pickup Details */}
-                  <section className="space-y-3.5">
-                    <div className="flex items-center justify-between border-b border-[#242424] pb-2">
-                      <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-2">
+                  <section className="space-y-2.5 sm:space-y-3.5">
+                    <div className="flex items-center justify-between border-b border-[#242424] pb-1.5 sm:pb-2">
+                      <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5 sm:gap-2">
                         {deliveryMode === 'delivery' && (
                           <>
-                            <MapPin className="w-4 h-4 text-[#FF6B00]" />
+                            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF6B00]" />
                             <span>Endereço de Entrega (Estafeta Próprio)</span>
                           </>
                         )}
                         {deliveryMode === 'yango' && (
                           <>
-                            <Car className="w-4 h-4 text-yellow-400" />
+                            <Car className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400" />
                             <span>Endereço para Envio via Yango</span>
                           </>
                         )}
                         {deliveryMode === 'pickup' && (
                           <>
-                            <Store className="w-4 h-4 text-emerald-400" />
+                            <Store className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
                             <span>Informações de Levantamento</span>
                           </>
                         )}
@@ -606,9 +611,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     </div>
 
                     {deliveryMode === 'delivery' || deliveryMode === 'yango' ? (
-                      <div className="space-y-3 sm:space-y-4">
+                      <div className="space-y-2.5 sm:space-y-3.5">
                         {/* Neighborhood Selector */}
-                        <div className="space-y-1.5">
+                        <div className="space-y-1">
                           <div className="flex items-center justify-between">
                             <label 
                               htmlFor="delivery-neighborhood" 
@@ -617,11 +622,11 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                               Bairro em {RESTAURANT_CONFIG.city} *
                             </label>
                             {deliveryMode === 'delivery' ? (
-                              <span className="text-[#FF6B00] font-bold text-[11px] bg-[#FF6B00]/15 px-2 py-0.5 rounded border border-[#FF6B00]/25">
+                              <span className="text-[#FF6B00] font-bold text-[10px] sm:text-[11px] bg-[#FF6B00]/15 px-2 py-0.5 rounded border border-[#FF6B00]/25">
                                 Taxa: {formatPrice(selectedNeighborhood.fee)}
                               </span>
                             ) : (
-                              <span className="text-yellow-400 font-bold text-[11px] bg-yellow-500/15 px-2 py-0.5 rounded border border-yellow-500/25">
+                              <span className="text-yellow-400 font-bold text-[10px] sm:text-[11px] bg-yellow-500/15 px-2 py-0.5 rounded border border-yellow-500/25">
                                 Yango Flash: Pago ao motorista
                               </span>
                             )}
@@ -636,7 +641,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                                   setErrors((prev) => ({ ...prev, neighborhood: '' }));
                                 }
                               }}
-                              className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6B00] appearance-none cursor-pointer pr-10"
+                              className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#FF6B00] appearance-none cursor-pointer pr-10"
                             >
                               {deliveryZones.map((n) => (
                                 <option key={n.id} value={n.id} className="bg-[#181818] text-white">
@@ -645,13 +650,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                               ))}
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400">
-                              <i className="fa-solid fa-chevron-down text-xs"></i>
+                              <ChevronDown className="w-4 h-4" />
                             </div>
                           </div>
                         </div>
 
                         {/* Address Field */}
-                        <div className="space-y-1.5">
+                        <div className="space-y-1">
                           <label 
                             htmlFor="delivery-address" 
                             className="block text-xs font-semibold text-zinc-200"
@@ -660,6 +665,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                           </label>
                           <input
                             id="delivery-address"
+                            name="street-address"
+                            autoComplete="street-address"
                             type="text"
                             value={address}
                             onChange={(e) => {
@@ -671,7 +678,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                             onBlur={() => handleBlur('address')}
                             placeholder="Ex: Av. Julius Nyerere, Edifício Tropical, 3º andar, porta 32"
                             aria-invalid={Boolean(touched.address && errors.address)}
-                            className={`w-full bg-[#1A1A1A] border rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
+                            className={`w-full bg-[#1A1A1A] border rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
                               touched.address && errors.address
                                 ? 'border-red-500 focus:border-red-500 ring-1 ring-red-500/30'
                                 : 'border-[#2D2D2D] focus:border-[#FF6B00]'
@@ -686,7 +693,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                         </div>
 
                         {/* Reference Point Field (Optional) */}
-                        <div className="space-y-1.5">
+                        <div className="space-y-1">
                           <label 
                             htmlFor="delivery-reference" 
                             className="block text-xs font-semibold text-zinc-400"
@@ -700,31 +707,31 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                               value={reference}
                               onChange={(e) => setReference(e.target.value)}
                               placeholder="Ex: Portão preto em frente à Farmácia Central"
-                              className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF6B00]"
+                              className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF6B00]"
                             />
                           </div>
                         </div>
                       </div>
                     ) : (
                       /* Pickup Information Card */
-                      <div className="bg-[#181818] border border-[#262626] rounded-2xl p-4 space-y-3">
-                        <div className="flex items-start gap-3">
-                          <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
-                            <Store className="w-5 h-5" />
+                      <div className="bg-[#181818] border border-[#262626] rounded-xl sm:rounded-2xl p-3 sm:p-4 space-y-2 sm:space-y-3">
+                        <div className="flex items-start gap-2.5 sm:gap-3">
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+                            <Store className="w-4 h-4 sm:w-5 sm:h-5" />
                           </div>
-                          <div className="space-y-1">
+                          <div className="space-y-0.5 sm:space-y-1 min-w-0">
                             <p className="text-xs font-bold text-white uppercase tracking-wider">
                               Ponto de Levantamento no Balcão
                             </p>
-                            <p className="text-sm font-semibold text-zinc-200">
+                            <p className="text-xs sm:text-sm font-semibold text-zinc-200">
                               {RESTAURANT_CONFIG.address}
                             </p>
-                            <p className="text-xs text-zinc-400">
+                            <p className="text-[11px] sm:text-xs text-zinc-400">
                               Horário agendado para retirada: <strong className="text-white">{getFormattedReadyTime()}</strong>
                             </p>
                           </div>
                         </div>
-                        <div className="pt-2.5 border-t border-[#242424] flex items-center justify-between text-xs text-zinc-400">
+                        <div className="pt-2 border-t border-[#242424] flex items-center justify-between text-xs text-zinc-400">
                           <span>Taxa de levantamento:</span>
                           <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                             GRÁTIS
@@ -734,7 +741,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     )}
 
                     {/* Additional Notes Field (Optional for both) */}
-                    <div className="space-y-1.5 pt-1">
+                    <div className="space-y-1 pt-0.5 sm:pt-1">
                       <label 
                         htmlFor="order-notes" 
                         className="block text-xs font-semibold text-zinc-400"
@@ -747,26 +754,26 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                         placeholder="Ex: Por favor sem pickles no hambúrguer, maionese à parte..."
-                        className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF6B00]"
+                        className="w-full bg-[#1A1A1A] border border-[#2D2D2D] rounded-xl px-3 sm:px-3.5 py-2 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF6B00]"
                       />
                     </div>
                   </section>
 
-                  {/* Order Items Preview */}
-                  <section className="bg-[#181818] border border-[#262626] rounded-2xl p-4 sm:p-5 space-y-3">
-                    <div className="flex items-center justify-between border-b border-[#282828] pb-2.5">
-                      <div className="flex items-center gap-2">
-                        <ShoppingBag className="w-4 h-4 text-[#FF6B00]" />
+                  {/* Order Items Preview (Compact for mobile) */}
+                  <section className="bg-[#181818] border border-[#262626] rounded-xl sm:rounded-2xl p-3 sm:p-4 space-y-2">
+                    <div className="flex items-center justify-between border-b border-[#282828] pb-2">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF6B00]" />
                         <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white">
                           Resumo ({items.reduce((acc, i) => acc + i.quantity, 0)} itens)
                         </h3>
                       </div>
-                      <span className="text-sm font-black text-[#FF6B00] font-display">
+                      <span className="text-xs sm:text-sm font-black text-[#FF6B00] font-display">
                         Total: {formatPrice(total)}
                       </span>
                     </div>
 
-                    <div className="space-y-1.5 max-h-32 overflow-y-auto pr-1">
+                    <div className="space-y-1 max-h-24 sm:max-h-32 overflow-y-auto pr-1">
                       {items.map((item, idx) => (
                         <div 
                           key={`${item.id}-${idx}`}
@@ -798,12 +805,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             </div>
 
             {/* 3. Modal Footer CTA */}
-            <footer className="p-4 sm:p-5 border-t border-[#222222] bg-[#181818] space-y-2 shrink-0">
+            <footer className="p-3.5 sm:p-5 border-t border-[#222222] bg-[#181818] space-y-2 shrink-0">
               {currentStep === 1 && (
                 <button
                   type="button"
                   onClick={handleProceedToStep2}
-                  className="w-full py-3.5 px-4 rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] active:scale-[0.99] text-white font-bold text-sm sm:text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B00]/25 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/50"
+                  className="w-full py-3 sm:py-3.5 px-4 rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] active:scale-[0.99] text-white font-bold text-sm sm:text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B00]/25 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/50"
                 >
                   <span>Avançar para Identificação & Endereço</span>
                   <ArrowLeft className="w-4 h-4 rotate-180" />
@@ -814,7 +821,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 <button
                   type="button"
                   onClick={handleProceedToStep3}
-                  className="w-full py-3.5 px-4 rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] active:scale-[0.99] text-white font-bold text-sm sm:text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B00]/25 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/50"
+                  className="w-full py-3 sm:py-3.5 px-4 rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] active:scale-[0.99] text-white font-bold text-sm sm:text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#FF6B00]/25 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#FF6B00]/50"
                 >
                   <span>Avançar para Pagamento (M-Pesa / e-Mola)</span>
                   <ArrowLeft className="w-4 h-4 rotate-180" />
